@@ -68,6 +68,31 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ## the argon documentation and startup
  can find [here](https://argon-dashboard-laravel.creative-tim.com/docs/getting-started/installation.html#starter-template)
 
+## Installation
+
+After initializing a fresh instance of Laravel (and making all the necessary configurations), install the preset using one of the provided methods:
+Via composer
+- Cd to your Laravel app
+- Type in your terminal: `composer require laravel/ui` and `php artisan ui vue --auth`
+- Install this preset via `composer require laravel-frontend-presets/argon`. No need to register the service provider. Laravel 5.5 & up can auto detect the package.
+- Run `php artisan ui argon` command to install the Argon preset. This will install all the necessary assets and also the custom auth views, it will also add the auth route in routes/web.php (NOTE: If you run this command several times, be sure to clean up the duplicate Auth entries in routes/web.php)
+- In your terminal run `composer dump-autoload` or  `composer du`
+- Run `php artisan migrate --seed` to create basic users table
+
+## By using the archive
+
+- In your application's root create a presets folder
+- Download an archive of the repo and unzip it
+- Copy and paste argon-master folder in presets (created in step 2) and rename it to argon
+- Open composer.json file
+- Add "LaravelFrontendPresets\\ArgonPreset\\": "presets/argon/src" to autoload/psr-4 and to autoload-dev/psr-4
+- Add LaravelFrontendPresets\ArgonPreset\ArgonPresetServiceProvider::class to config/app.php file
+- Type in your terminal: composer require laravel/ui and php artisan ui vue --auth
+- In your terminal run composer dump-autoload
+- Run php artisan ui argon command to install the Argon preset. This will install all the necessary assets and also the custom auth views, it will also add the auth route in routes/web.php (NOTE: If you run this command several times, be sure to clean up the duplicate Auth entries in routes/web.php)
+- Run php artisan migrate --seed to create basic users table
+
+
 ## Usage
 
 Register a user or login using admin@argon.com and secret and start testing the preset (make sure to run the migrations and seeders for these credentials to be available).
@@ -176,3 +201,21 @@ Bootstrap is developed mobile first, a strategy in which we optimize code for mo
 ```sh
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 ```
+# Throw Error Unknown database
+- do not forget to create your schemea first
+
+```sh
+create schema argon_tinker_from_scratch;
+use argon_tinker_from_scratch;
+```
+- then generate the key
+-  
+```sh
+php artisan key:generate
+```
+- then migrate the database and seed
+```sh
+php artisan migrate --seed
+```
+
+  
