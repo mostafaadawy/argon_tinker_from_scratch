@@ -218,4 +218,21 @@ php artisan key:generate
 php artisan migrate --seed
 ```
 
-  
+## Modules
+
+nwidart modules package [link](https://nwidart.com/laravel-modules/v6/introduction)
+
+- require it first `composer require nwidart/laravel-modules`
+- then publish it `php artisan vendor:publish --provider="Nwidart\Modules\LaravelModulesServiceProvider"`
+- Autoloading: By default the module classes are not loaded automatically. You can autoload your modules using psr-4. For example :
+```sh
+{
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "Modules\\": "Modules/"
+    }
+  }
+}
+```
+Tip: don't forget to run `composer dump-autoload` afterwards
