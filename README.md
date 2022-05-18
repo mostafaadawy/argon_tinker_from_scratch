@@ -265,3 +265,23 @@ php artisan module:make Blog -p
 
 Because we are autoloading the modules using psr-4, we strongly recommend using StudlyCase convention.
 
+##  Custom namespaces
+
+When you create a new `module` it also registers new custom namespace for Lang, View and Config. For example, if you create a new module named blog, it will also `register` new `namespace/hint` blog for that module. Then, you can `use` that namespace for calling Lang, View or Config. Following are some examples of its usage:
+
+## Calling Lang:
+```sh
+Lang::get('blog::group.name');
+
+@trans('blog::group.name');
+```
+## Calling View:
+```sh
+view('blog::index')
+
+view('blog::partials.sidebar')
+```
+## Calling Config:
+```sh
+Config::get('blog.name')
+```
