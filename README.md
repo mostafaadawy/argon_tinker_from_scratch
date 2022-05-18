@@ -236,3 +236,32 @@ nwidart modules package [link](https://nwidart.com/laravel-modules/v6/introducti
 }
 ```
 Tip: don't forget to run `composer dump-autoload` afterwards
+
+##  Creating a module
+
+- Creating a module is simple and straightforward. Run the following command to create a module.
+
+```sh
+php artisan module:make <module-name>
+```
+
+- Replace `<module-name>` by your desired name.
+- It is also possible to create multiple modules in one command.
+
+```sh
+php artisan module:make Blog User Auth
+```
+
+- By default when you create a new module, the command will add some resources like a controller, seed class, service provider, etc. automatically. If you don't want these, you can add `--plain` flag, to generate a plain module.
+
+```sh
+php artisan module:make Blog --plain
+```
+# or
+```sh
+php artisan module:make Blog -p
+```
+### Naming convention
+
+Because we are autoloading the modules using psr-4, we strongly recommend using StudlyCase convention.
+
