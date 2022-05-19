@@ -496,3 +496,35 @@ php artisan module:make-resource PostResource Blog --collection
 ### module:make-test
 Generate the given test class for the specified module `php artisan module:make-test EloquentPostRepositoryTest Blog`
 
+#  Facade methods
+- Get all modules `Module::all();`
+-  Get all cached modules `Module::getCached();`
+-  Get ordered modules. The modules will be ordered by the priority key in module.json file `Module::getOrdered();`
+-  Get scanned modules `Module::scan();`
+-  Find a specific module `Module::find('name');` OR `Module::get('name');` Find a module, if there is one, return the Module instance, otherwise throw `Nwidart\Modules\Exeptions\ModuleNotFoundException`.
+-  `Module::findOrFail('module-name');`
+-  Get scanned paths.` Module::getScanPaths();`
+-  Get all modules as a collection instance `Module::toCollection();`
+-  Get modules by the status 1 for active and 0 for inactive `Module::getByStatus(1);`
+-  Check the specified module. If it exists, will return true, otherwise false `Module::has('blog');`
+-  Get all enabled modules `Module::allEnabled();`
+-  Get all disabled modules `Module::allDisabled();`
+-  Get count of all modules `Module::count();`
+-  Get module path `Module::getPath();`
+-  Register the modules `Module::register();`
+-  Boot all available modules `Module::boot();`
+-  Get all enabled modules as collection instance `Module::collections();`
+-  Get module path from the specified module `Module::getModulePath('name');`
+-  Get assets path from the specified module `Module::assetPath('name');`
+-  Get config value from this package `Module::config('composer.vendor');`
+-  Get used storage path `Module::getUsedStoragePath();`
+-  Get used module for cli session `Module::getUsedNow();` OR `Module::getUsed();`
+-  Set used module for cli session `Module::setUsed('name');`
+-  Get modules's assets path `Module::getAssetsPath();`
+-  Get asset url from specific module `Module::asset('blog:img/logo.img');`
+-  Install the specified module by given module name `Module::install('nwidart/hello');`
+-  Update dependencies for the specified module `Module::update('hello');`
+-  Add a macro to the module repository `Module::macro('hello', function() { echo "I'm a macro";});`
+-  Call a macro from the module repository `Module::hello();`
+-  Get all required modules of a module `Module::getRequirements('module name');`
+
