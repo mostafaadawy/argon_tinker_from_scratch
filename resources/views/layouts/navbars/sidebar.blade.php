@@ -104,7 +104,6 @@
                         </ul>
                     </div>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('icons') }}">
                         <i class="ni ni-planet text-blue"></i> {{ __('Icons') }}
@@ -125,6 +124,144 @@
                     <a class="nav-link" href="#">
                         <i class="ni ni-circle-08 text-pink"></i> {{ __('Register') }}
                     </a>
+                </li>
+                <!-- accounting module -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            {{ __('accounting.sidebar.main') }}
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-cog"></i>
+                                <p>
+                                    {{ __('accounting.sidebar.codesettings') }}
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+
+                                <li class="nav-item">
+                                    <a href="{{route('accounting.codesettings.index',['type'=>'revenue'])}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('accounting.sidebar.codesettings_reven') }}</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{route('accounting.codesettings.index',['type'=>'expenses'])}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('accounting.sidebar.codesettings_expen') }}</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{route('accounting.codesettings.index',['type'=>'accounts'])}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('accounting.sidebar.codesettings_acc') }}</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-receipt    "></i>
+                                <p>
+                                    {{ __('accounting.sidebar.dailyrecord') }}
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{route('accounting.dailyrecords.index',['type'=>'revenue'])}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('accounting.sidebar.dailyrecord_reven') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('accounting.dailyrecords.index',['type'=>'expenses'])}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('accounting.sidebar.dailyrecord_expen') }}</p>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-cog"></i>
+                                <p>
+                                    {{ __('accounting.sidebar.budgetterms') }}
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fa fa-list"></i>
+                                        <p>
+                                            {{ __('accounting.revenue') }}
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+
+                                    <ul class="nav nav-treeview">
+
+                                        <li class="nav-item">
+                                            <a href="{{route('accounting.budgetterms.index',['type'=>'revenue'])}}" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>{{ __('accounting.terms') }}</p>
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="{{route('accounting.budgetterms.misc',['type'=>'revenue'])}}" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>{{ __('accounting.misc') }}</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fa fa-list"></i>
+                                        <p>
+                                            {{ __('accounting.expenses') }}
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="{{route('accounting.budgetterms.index',['type'=>'expenses'])}}" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>{{ __('accounting.terms') }}</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{route('accounting.budgetterms.misc',['type'=>'expenses'])}}" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>{{ __('accounting.misc') }}</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('accounting.report.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa-file-excel "></i>
+                                <p>
+                                    {{ __('accounting.sidebar.report') }}
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item mb-5 mr-4 ml-4 pl-1 bg-danger" style="position: absolute; bottom: 0;">
                     <a class="nav-link text-white" href="https://www.creative-tim.com/product/argon-dashboard-pro-laravel" target="_blank">
