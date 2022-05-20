@@ -696,3 +696,5 @@ class EventServiceProvider extends ServiceProvider
 - adding some requirements for club app not for standard module
 - delete unwanted console folder
 - delete unwanted factories in database folder
+- remove unwanted getkeep files
+- structure the entities to mimic other module structure
