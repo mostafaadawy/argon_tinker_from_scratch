@@ -706,5 +706,5 @@ class EventServiceProvider extends ServiceProvider
 - removing all middleware cause the bascontroller is in the parent app
 - nothing in our module custom request for validations
 - removing node_module where it will be installed in parent
-
+- removing all providers where it is used from parent except module provider "AccountingServiceProvider" which acting ass appServiceProvider and also keep RouteServiceProvider
 
