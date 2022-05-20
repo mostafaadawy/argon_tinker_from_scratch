@@ -679,3 +679,14 @@ class EventServiceProvider extends ServiceProvider
     ];
 }
 ```
+# Adding accounting module app roughly
+- copying all views
+- copying all controllers
+- copying all providers except routeservice provider
+- copying all middlewares
+- copying all models
+- copying all lang files
+- removing unwanted route and copying all routes after editing and removing /accounting where we are inside the prefix
+- removing unwanted index and controller
+- next step it to edit the module to the samilar module in club
+  
