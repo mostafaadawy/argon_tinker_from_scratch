@@ -689,4 +689,9 @@ class EventServiceProvider extends ServiceProvider
 - removing unwanted route and copying all routes after editing and removing /accounting where we are inside the prefix
 - removing unwanted index and controller
 - next step it to edit the module to the samilar module in club
-  
+
+# Editing module to get it work refrence club payroll module
+
+## Config config.php 
+- adding some requirements for club app not for standard module
+
