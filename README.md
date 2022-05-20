@@ -708,4 +708,4 @@ class EventServiceProvider extends ServiceProvider
 - removing node_module where it will be installed in parent
 - removing all providers where it is used from parent except module provider "AccountingServiceProvider" which acting ass appServiceProvider and also keep RouteServiceProvider
 - structuring lang folder to have two folders for arabic and english
-- 
+- structuring views folder 
