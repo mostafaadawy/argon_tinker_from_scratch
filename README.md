@@ -699,4 +699,4 @@ class EventServiceProvider extends ServiceProvider
 - remove unwanted getkeep files
 - structure the entities to mimic other module structure
 - editing entities file namespace and paths
-- 
+- structure the controller to mimic other module structure
