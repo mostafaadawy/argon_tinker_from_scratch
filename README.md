@@ -704,4 +704,4 @@ class EventServiceProvider extends ServiceProvider
 - requiiring yajara datatable `composer require yajra/laravel-datatables:^1.5`
 - requiring pdf package `composer require elibyy/tcpdf-laravel`
 - removing all middleware cause the bascontroller is in the parent app
-
+- nothing in our module custom request for validations
