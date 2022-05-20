@@ -698,3 +698,5 @@ class EventServiceProvider extends ServiceProvider
 - delete unwanted factories in database folder
 - remove unwanted getkeep files
 - structure the entities to mimic other module structure
+- editing entities file namespace and paths
+- 

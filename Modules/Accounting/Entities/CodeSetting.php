@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Accounting;
+namespace Modules\Accounting\Entities;
 
 use Exception;
 use Illuminate\Database\Eloquent\Model;

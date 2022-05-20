@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Models\Accounting;
-
+namespace Modules\Accounting\Entities;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Accounting\TermItem;
+use Modules\Accounting\Entities\TermItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class BudgetTerm extends Model
 {
 
-    protected $fillable = 
+    protected $fillable =
     [
         'name',
         'type'

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Accounting;
+namespace Modules\Accounting\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,7 +18,7 @@ class DailyRecordsEntrie extends Model
     {
         return $this->belongsTo(DailyRecords::class,'daily_records_id');
     }
-    
+
     public function code()
     {
         return $this->belongsTo(CodeSettingsView::class,'code_settings_id');

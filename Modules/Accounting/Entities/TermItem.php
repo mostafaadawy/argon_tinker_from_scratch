@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Models\Accounting;
+namespace Modules\Accounting\Entities;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Accounting\BudgetTerm;
+use Modules\Accounting\Entities\BudgetTerm;
 use Illuminate\Http\Request;
 
 class TermItem extends Model
 {
-    protected $fillable = 
+    protected $fillable =
     [
         'code_setting_id',
         'budget_term_id'

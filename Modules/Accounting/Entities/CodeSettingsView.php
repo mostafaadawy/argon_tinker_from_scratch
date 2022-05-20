@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Accounting;
+namespace Modules\Accounting\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +20,7 @@ class CodeSettingsView extends Model
                         ['totalCredit'=>$itemEntries[0]->totalCredit,
                          'totalDept'=>$itemEntries[0]->totalDept,
                         'total'=>$itemEntries[0]->total];
-        
+
 
         $itemEntries=array_map(
             function($elem){return is_null($elem)?0:$elem;}

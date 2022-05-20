@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models\Accounting;
+namespace Modules\Accounting\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
 class DailyRecords extends Model
 {
     protected $table='daily_records';
-    
+
     protected $fillable =[
         'date',
         'type',
@@ -16,7 +16,7 @@ class DailyRecords extends Model
 
     public function entries()
     {
-        return $this->hasMany(DailyRecordsEntrie::class,'daily_records_id');    
+        return $this->hasMany(DailyRecordsEntrie::class,'daily_records_id');
     }
 
 }

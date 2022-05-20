@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Accounting;
+namespace Modules\Accounting\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,7 +10,7 @@ class DailyRecordsView extends Model
 
     public function entries()
     {
-        return $this->hasMany(DailyRecordsEntrie::class,'daily_records_id');    
+        return $this->hasMany(DailyRecordsEntrie::class,'daily_records_id');
     }
 }
 
