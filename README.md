@@ -703,4 +703,5 @@ class EventServiceProvider extends ServiceProvider
 - editing controllers file namespace and paths
 - requiiring yajara datatable `composer require yajra/laravel-datatables:^1.5`
 - requiring pdf package `composer require elibyy/tcpdf-laravel`
-- 
+- removing all middleware cause the bascontroller is in the parent app
+
