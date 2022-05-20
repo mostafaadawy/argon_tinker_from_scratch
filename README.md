@@ -694,4 +694,4 @@ class EventServiceProvider extends ServiceProvider
 
 ## Config config.php 
 - adding some requirements for club app not for standard module
-
+- delete unwanted console folder
