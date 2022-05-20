@@ -1,9 +1,9 @@
-@extends('layouts.dashboard')
+@extends('layouts.app')
 @section('pageTitle',$viewData['pageTitle'])
 @section('contentHeaderTitle',$viewData['contentHeaderTitle'])
-@section('pageContent')
+@section('content')
 
-
+    @include('layouts.headers.cards') {{-- to be edited in club--}}
 
 <script>
     var rows={{$record->entries->count()}};
@@ -22,12 +22,12 @@
 
 @if(session()->get('success'))
 <div class="alert alert-success">
-  {{ session()->get('success') }}  
+  {{ session()->get('success') }}
 </div><br />
 @endif
 
 <form method="post" action="{{ route('accounting.dailyrecords.update',[$viewData['type'],$record->id]) }}">
-   
+
 
     @csrf
     @method('PUT')
@@ -37,7 +37,7 @@
         <input type="date" class="form-control" id="datepicker"  value="{{$record->date}}" disabled/>
     </div>
     <div class="form-group mb-2">
-    
+
                                                     <label>{{__('accounting.description')}}</label>
                                                     <textarea class="form-control" name="description">{{ old('description') ?? $record->description ?? '' }}</textarea>
     </div>
@@ -52,19 +52,19 @@
                                         </thead>
 
                                         <tbody>
-                                        
+
                                             @php
                                                 $i=1;
                                             @endphp
                                             @foreach ($record->entries as $entry)
                                                     <tr id='R{{$i}}'>
-                                                        <td>   
+                                                        <td>
                                                             <input type="hidden" name='oldEntries[]' value="{{$entry->id}}">
                                                             <select class='form-select' disabled>
                                                                         <option value='' selected> {{$entry->code->code}} - {{$entry->code->breadcrumb}} </option>
                                                             </select>
                                                         </td>
-                                                        <td>   
+                                                        <td>
                                                             <select  class='form-select' disabled>
                                                                         <option value='' selected> {{$entry->account->code}} - {{$entry->account->breadcrumb}} </option>
                                                             </select>
@@ -97,7 +97,7 @@
                                                 <td><input id='total' class='form-control' value='{{$record->total}}' disabled></td>
                                             </tr>
 
-                                        </tfoot>    
+                                        </tfoot>
 
                                     </table>
                                 </div>
@@ -124,7 +124,7 @@
 function initSelectors()
 {
     $( '.selCode' ).select2({
-        ajax: { 
+        ajax: {
           url: "{{route('accounting.dailyrecords.ajax',[$viewData['type'],'selCode'])}}",
           type: "post",
           dataType: 'json',
@@ -146,7 +146,7 @@ function initSelectors()
       });
 
       $( '.selAccount' ).select2({
-        ajax: { 
+        ajax: {
           url: "{{route('accounting.dailyrecords.ajax',['accounts','selCode'])}}",
           type: "post",
           dataType: 'json',
@@ -209,7 +209,7 @@ function upTotals()
 
 }
 
-//Date Validation 
+//Date Validation
 function validateDate(date)
 {
     $.ajax({

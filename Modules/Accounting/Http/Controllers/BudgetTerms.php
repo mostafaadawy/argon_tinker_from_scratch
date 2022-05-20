@@ -31,7 +31,7 @@ class BudgetTerms extends Controller
         $viewData['type']=$type;
 
 
-        return view('accounting.budgetterms.index')->with('viewData', $viewData);
+        return view('accounting::budgetterms.index')->with('viewData', $viewData);
     }
 
     public function destroy($type, $id = 'notdefinied')
@@ -50,7 +50,7 @@ class BudgetTerms extends Controller
         $viewData=['pageTitle'=>__('accounting.budgetTermsAdd').' | '.ucfirst(__('accounting.'.$type)),
         'contentHeaderTitle'=>ucfirst(__('accounting.budgetTermsAdd')).' - '.ucfirst(__('accounting.'.$type))];
         $viewData['type']=$type;
-        return view('accounting.budgetterms.create')->with('viewData', $viewData);
+        return view('accounting::budgetterms.create')->with('viewData', $viewData);
 
     }
 
@@ -106,7 +106,7 @@ class BudgetTerms extends Controller
         $viewData['term']=$term;
         $viewData['items']=$items;
 
-        return view('accounting.budgetterms.edit')->with('viewData', $viewData);
+        return view('accounting::budgetterms.edit')->with('viewData', $viewData);
 
     }
 
@@ -179,7 +179,7 @@ class BudgetTerms extends Controller
         'contentHeaderTitle'=>ucfirst(__('accounting.budgetTerms')).' - '.ucfirst(__('accounting.misc').' - '.ucfirst(__('accounting.'.$type)))];
         $viewData['type']=$type;
 
-        return view('accounting.budgetterms.misc')->with('viewData', $viewData);
+        return view('accounting::budgetterms.misc')->with('viewData', $viewData);
     }
 
     public function miscStore($type, Request $request)

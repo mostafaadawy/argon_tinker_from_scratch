@@ -1,8 +1,8 @@
-@extends('layouts.dashboard')
+@extends('layouts.app')
 @section('pageTitle',$viewData['pageTitle'])
 @section('contentHeaderTitle',$viewData['contentHeaderTitle'])
-@section('pageContent')
-
+@section('content')
+    @include('layouts.headers.cards') {{-- to be edited in club--}}
 <script>
     var rows=1;
 </script>
@@ -24,7 +24,7 @@
         <label for="date">{{__('accounting.date')}}</label>
         <input type="date" class="form-control" id="datepicker" onchange="validateDate(this.value)" name="date" value="{{old('date')}}" placeholder="{{__('accounting.date')}}" max="{{date('Y-m-d')}}" required/>
     </div>
- 
+
 
                                 <div class="table-responsive-lg">
                                     <table class='table border' id='entriesTbl' >
@@ -38,12 +38,12 @@
 
                                         <tbody>
                                             <tr id='R1'>
-                                                <td>   
+                                                <td>
                                                      <select  class='selCode form-select' name='codes[]' required>
                                                                  <option value='' disabled>    {{__('accounting.chooseCode')}}</option>
                                                      </select>
                                                 </td>
-                                                <td>   
+                                                <td>
                                                      <select  class='selAccount form-select' name='accounts[]' required>
                                                                  <option value='' disabled>    {{__('accounting.chooseAccount')}}</option>
                                                      </select>
@@ -55,7 +55,7 @@
                                         </tbody>
                                         <tfoot>
 
-                                           
+
                                             <tr><td colspan="5" style="text-align: center" > <button type="button" class='btn btn-primary' onClick="addRow()" ><i class="fa fa-plus-circle" aria-hidden="true"></i> {{__('accounting.addCode')}}</button></td></tr>
                                             <tr><td colspan="5">   <div class="form-group mb-2">
                                                 <label>{{__('accounting.description')}}</label>
@@ -71,7 +71,7 @@
                                                 <td>{{__('accounting.total')}}</td>
                                                 <td><input id='total' class='form-control' value='0' disabled></td>
                                             </tr>
-                                        </tfoot>    
+                                        </tfoot>
 
                                     </table>
                                 </div>

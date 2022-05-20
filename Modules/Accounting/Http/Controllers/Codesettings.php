@@ -16,8 +16,6 @@ class Codesettings extends Controller
 {
     public function index($type, Request $request)
     {
-
-
         if ($request->ajax()) {
             $query = CodeSettingsView::select('id', 'breadcrumb', 'is_main', 'code')
             ->where('type', CodeSetting::getTypeEnum($type));
@@ -32,20 +30,14 @@ class Codesettings extends Controller
 
         return view('accounting::codesettings.index')->with('viewData', $viewData);
     }
-
-
     public function destroy($type, $id = 'notdefinied')
     {
-
-
         $code = CodeSetting::findOrFail($id);
         $code->delete();
 
-        return redirect(route('accounting::codesettings.index', $type))
+        return redirect(route('accounting.codesettings.index', $type))
         ->with('success', __('accounting.codesettings.deleteSuccess'));
     }
-
-
     public function create($type)
     {
 
@@ -57,8 +49,6 @@ class Codesettings extends Controller
 
         return view('accounting::codesettings.create')->with('viewData', $viewData);
     }
-
-
     public function store(Request $request, $type)
     {
 
@@ -142,8 +132,6 @@ class Codesettings extends Controller
             return redirect(route('accounting.codesettings.index', $type))
             ->with('success', __('accounting.codesettings.storesuccess'));
     }
-
-
     public function search($type, $searchType, Request $request)
     {
         if (!in_array($searchType, ['main','notmain'])) {

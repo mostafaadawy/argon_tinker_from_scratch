@@ -1,9 +1,9 @@
-@extends('layouts.dashboard')
+@extends('layouts.app')
 @section('pageTitle',$viewData['pageTitle'])
 @section('contentHeaderTitle',$viewData['contentHeaderTitle'])
-@section('pageContent')
+@section('content')
 
-
+    @include('layouts.headers.cards') {{-- to be edited in club--}}
 
 
 
@@ -58,11 +58,11 @@
 
                                             @foreach ($record->entries as $entry)
                                                     <tr>
-                                                        <td>   
-                                                                <input class='form-control' value='{{$entry->code->code}} - {{$entry->code->breadcrumb}}' disabled> 
+                                                        <td>
+                                                                <input class='form-control' value='{{$entry->code->code}} - {{$entry->code->breadcrumb}}' disabled>
                                                         </td>
-                                                        <td>   
-                                                                <input class='form-control' value='{{$entry->account->code}} - {{$entry->account->breadcrumb}}' disabled> 
+                                                        <td>
+                                                                <input class='form-control' value='{{$entry->account->code}} - {{$entry->account->breadcrumb}}' disabled>
                                                         </td>
                                                         <td><input type="number" class="form-control" value="{{$entry->credit}}" disabled/></td>
                                                         <td><input type="number" class="form-control"  value="{{$entry->dept}}" disabled/></td>
@@ -83,10 +83,10 @@
                                             </tr>
 
 
-                                        </tfoot>    
+                                        </tfoot>
 
                                     </table>
-    </div>                 
+    </div>
 
 
 

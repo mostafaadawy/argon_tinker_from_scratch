@@ -1,8 +1,8 @@
-@extends('layouts.dashboard')
+@extends('layouts.app')
 @section('pageTitle',$viewData['pageTitle'])
 @section('contentHeaderTitle',$viewData['contentHeaderTitle'])
-@section('pageContent')
-
+@section('content')
+    @include('layouts.headers.cards') {{-- to be edited in club--}}
 @if ($errors->any())
     <div class="alert alert-danger">
     <ul>
@@ -16,7 +16,7 @@
 
 
 <form method="post" action="{{ route('accounting.report.generate') }}"  class='text-center' onsubmit="injectData()">
-   
+
     @csrf
 
     <div class='row'>
@@ -28,7 +28,7 @@
             <label for="date">{{__('accounting.endDate')}}</label>
             <input type="date" class="form-control" id="datepicker" onchange="validateDate(this.value,'end')" name="endDate" value="{{old('endDate')}}" placeholder="{{__('accounting.date')}}"  required/>
         </div>
-    
+
     </div>
 
         <div class="table-responsive">

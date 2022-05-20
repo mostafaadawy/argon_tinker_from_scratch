@@ -13,7 +13,7 @@ class Report extends Controller
 {
     public function index()
     {
-        return view('accounting.report.index')->with('viewData', ['pageTitle'=>__('accounting.report'), 'contentHeaderTitle'=>__('accounting.generateReport')]);
+        return view('accounting::report.index')->with('viewData', ['pageTitle'=>__('accounting.report'), 'contentHeaderTitle'=>__('accounting.generateReport')]);
     }
 
     public function generate(Request $request)

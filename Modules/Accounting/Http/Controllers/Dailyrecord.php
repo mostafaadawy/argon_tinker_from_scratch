@@ -31,7 +31,7 @@ class Dailyrecord extends Controller
         $viewData['type']=$type;
 
 
-        return view('accounting.dailyrecords.index')->with('viewData', $viewData);
+        return view('accounting::dailyrecords.index')->with('viewData', $viewData);
     }
 
 
@@ -70,7 +70,7 @@ class Dailyrecord extends Controller
         $viewData['type']=$type;
 
 
-        return view('accounting.dailyrecords.create')->with('viewData', $viewData);
+        return view('accounting::dailyrecords.create')->with('viewData', $viewData);
     }
 
     public function store(Request $request,$type)
@@ -130,7 +130,7 @@ class Dailyrecord extends Controller
         'contentHeaderTitle'=>ucfirst(__('accounting.dailyrecords')).' - '.__('accounting.edit')];
         $viewData['type']=$type;
 
-        return View('accounting.dailyrecords.edit',['viewData'=>$viewData,'record'=>$record]);
+        return View('accounting::dailyrecords.edit',['viewData'=>$viewData,'record'=>$record]);
     }
 
     public function preview($id=null)
@@ -141,7 +141,7 @@ class Dailyrecord extends Controller
         'contentHeaderTitle'=>ucfirst(__('accounting.dailyrecords')).' - '.__('accounting.preview')];
 
 
-        return View('accounting.dailyrecords.preview',['viewData'=>$viewData,'record'=>$record]);
+        return View('accounting::dailyrecords.preview',['viewData'=>$viewData,'record'=>$record]);
     }
 
 

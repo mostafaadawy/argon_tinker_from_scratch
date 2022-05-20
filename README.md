@@ -746,5 +746,7 @@ Are you sure the view exists and is a .blade.php file?
 - dattatable wasn't able to be reloadded that was because jquery file required
 - adding the required jquery files to load in public folder and also the css required file
 - adding the links to these files in the spp layout
-
+- editing all return views to have prefex before the right path for return view
+- renaming ther section content to point to the right section
+- edit layouts.app to point to app instead of dashboard which is not exists
 

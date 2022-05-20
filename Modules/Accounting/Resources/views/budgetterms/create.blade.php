@@ -1,8 +1,8 @@
-@extends('layouts.dashboard')
+@extends('layouts.app')
 @section('pageTitle',$viewData['pageTitle'])
 @section('contentHeaderTitle',$viewData['contentHeaderTitle'])
-@section('pageContent')
-
+@section('content')
+    @include('layouts.headers.cards') {{-- to be edited in club--}}
 <script>
     var exclusions=[[],[]];
 </script>
@@ -25,7 +25,7 @@
         <input type="text" class="form-control" name="name" maxlength="120" placeholder="{{__('accounting.enterName')}}" required/>
     </div>
 
-    
+
 
     <label for="codeSearch">{{__('accounting.codes')}}</label>
 
@@ -33,11 +33,11 @@
 <div class='row'>
     <div class="form-group col-6 mb-2">
         <input class="form-control"  id="codeSearch"  onkeyup="searchCodes(this.value);"  name='CodeSearch' placeholder="{{__('accounting.typeToSearch')}}">
-        
+
     </div>
 
     <div class="form-group col-6 mb-2">
-        <select class="form-control"  id="codes" name='codes[]'  multiple required>  
+        <select class="form-control"  id="codes" name='codes[]'  multiple required>
             <option value=""  disabled>{{__('accounting.searchAndSelect')}}</option>
         </select>
     </div>
@@ -57,13 +57,13 @@ function searchCodes(key)
     if(key=='')
     {
         key='0000000000';
-    } 
+    }
 
     $.ajax({
 	type: "POST",
     dataType: 'json',
 	url: "{{route('accounting.budgetterms.ajax',[$viewData['type'],'codeSearch'])}}",
-	data:"_token={{csrf_token()}}&key="+key+"&exclude="+JSON.stringify(exclusions[1]),	
+	data:"_token={{csrf_token()}}&key="+key+"&exclude="+JSON.stringify(exclusions[1]),
 	success: function(response){
 
         var codeSelector=document.querySelector('#codes');

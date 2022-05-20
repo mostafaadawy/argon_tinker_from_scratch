@@ -1,8 +1,8 @@
-@extends('layouts.dashboard')
+@extends('layouts.app')
 @section('pageTitle',$viewData['pageTitle'])
 @section('contentHeaderTitle',$viewData['contentHeaderTitle'])
-@section('pageContent')
-
+@section('content')
+    @include('layouts.headers.cards') {{-- to be edited in club--}}
 <script>
     var exclusions=[[],[]];
 </script>
@@ -19,12 +19,12 @@
 
 @if(session()->get('success'))
 <div class="alert alert-success">
-  {{ session()->get('success') }}  
+  {{ session()->get('success') }}
 </div><br />
 @endif
 
 <form method="post" action="{{ route('accounting.budgetterms.miscStore',$viewData['type']) }}">
-    
+
     @csrf
 
 
@@ -37,14 +37,14 @@
     </div>
 
     <div class="form-group col-6 mb-2">
-        <select class="form-control"  id="terms" onchange='termBinding(this,document.querySelector("#termSearch"))' name='term'>  
+        <select class="form-control"  id="terms" onchange='termBinding(this,document.querySelector("#termSearch"))' name='term'>
             <option value="" selected> {{__("accounting.donotChooseTerm")}}</option>
         </select>
     </div>
-    
+
 </div>
 
-    
+
 
 <label for="codeSearch">{{__('accounting.codes')}}</label>
 
@@ -53,11 +53,11 @@
     <div class="form-group col-6 mb-2">
 
         <input class="form-control"  id="codeSearch"  onkeyup="searchCodes(this.value);"  name='CodeSearch' placeholder="{{__('accounting.typeToSearch')}}" >
-        
+
     </div>
 
     <div class="form-group col-6 mb-2">
-        <select class="form-control"  id="codes" name='codes[]'  onchange="searchCodes(document.querySelector('#codeSearch').value)" multiple required>  
+        <select class="form-control"  id="codes" name='codes[]'  onchange="searchCodes(document.querySelector('#codeSearch').value)" multiple required>
             <option value=""  disabled>{{__('accounting.searchAndSelect')}}</option>
         </select>
     </div>
@@ -115,13 +115,13 @@ function searchCodes(key)
     if(key=='')
     {
         key='0000000000';
-    } 
+    }
 
     $.ajax({
 	type: "POST",
     dataType: 'json',
 	url: "{{route('accounting.budgetterms.ajax',[$viewData['type'],'codeSearch'])}}",
-	data:"_token={{csrf_token()}}&key="+key+"&exclude="+JSON.stringify(exclusions[1]),	
+	data:"_token={{csrf_token()}}&key="+key+"&exclude="+JSON.stringify(exclusions[1]),
 	success: function(response){
 
         var codeSelector=document.querySelector('#codes');
@@ -173,12 +173,12 @@ function searchTerms(key)
 	{
 		key='NaN';
 	}
-	
+
     $.ajax({
     type: "POST",
     dataType: 'json',
 	url: "{{route('accounting.budgetterms.ajax',[$viewData['type'],'searchTerm'])}}",
-	data:"_token={{csrf_token()}}&key="+key,	
+	data:"_token={{csrf_token()}}&key="+key,
 	success: function(response){
         var termSelector=document.querySelector('#terms');
         if(response.length>0)
