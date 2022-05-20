@@ -30,7 +30,7 @@ class Codesettings extends Controller
         $viewData['type']=$type;
 
 
-        return view('accounting.codesettings.index')->with('viewData', $viewData);
+        return view('accounting::codesettings.index')->with('viewData', $viewData);
     }
 
 

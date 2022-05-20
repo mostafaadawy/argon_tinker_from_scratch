@@ -713,4 +713,17 @@ class EventServiceProvider extends ServiceProvider
 # Solving Bugs Get it Work
 Using `composer du` to get the errors
 - editing classes paths in routes
+Solving views pathes to be name spaced by `modulename::` before where the error and solution guess as follows
+
+```shell
+InvalidArgumentException
+View [accounting.codesettings.index] not found.
+http://127.0.0.1:8000/accounting/codesettings/expenses
+Hide solutions
+accounting.codesettings.index was not found.
+
+Did you mean accounting::codesettings\index?
+```
+
+- all what we have to do is to prefiex and edit pathes from the controllers that calles views
 
