@@ -1,8 +1,8 @@
-@extends('layouts.dashboard')
+@extends('layouts.app')
 @section('pageTitle',$viewData['pageTitle'])
 @section('contentHeaderTitle',$viewData['contentHeaderTitle'])
-@section('pageContent')
-
+@section('content')
+    @include('layouts.headers.cards') {{-- to be edited in club--}}
 @if ($errors->any())
     <div class="alert alert-danger">
     <ul>
@@ -24,24 +24,17 @@
 
     <div class='row'>
         <div class='col-4'> <input class="form-control mb-2 " maxlength="45" id="parentCodeSearch" onkeyup="searchCodes(this.value);" onchange="searchCodes(this.value);" name='parentCodeSearch' placeholder="{{__('accounting.typeToSearchParentCodes')}}">
-        </div><div class='col-4'> <select class="form-control mb-2"  id="parentCode" onchange="updateMainParent();" name='parentCode'>  
+        </div><div class='col-4'> <select class="form-control mb-2"  id="parentCode" onchange="updateMainParent();" name='parentCode'>
                 <option selected value> {{__("accounting.createNew")}}</option>
             </select>
         </div><div class='col-4'><button type='button' class='btn btn-primary m-1 ' id='addChild' onclick='addChildCode()'><i class="fa fa-plus-square" aria-hidden="true"></i></button></div>
     </div>
-
-    <div class='fluid-container' id='children'>
-
-
-    </div>
-
-</div>
+    <div class='fluid-container' id='children'></div>
 
     <button type="submit" class="btn btn-primary mb-2" id='formSubmit' disabled><i class="fa fa-plus-circle" aria-hidden="true"></i> {{__('accounting.submit')}}</button>
 
 </form>
-</div>
-</div>
+
 
 <script>
 function searchCodes(key)
@@ -52,7 +45,7 @@ function searchCodes(key)
 	type: "GET",
     dataType: 'json',
 	url: "{{route('accounting.codesettings.search',[$viewData['type'],'main'])}}",
-	data:"key="+key,	
+	data:"key="+key,
 	success: function(response){
         var codeSelector=document.querySelector('#parentCode');
         var codesResultsNumber = 0;
@@ -113,7 +106,7 @@ function updatelevels()
             type: "POST",
             dataType: 'json',
             url: "{{route('accounting.codesettings.getCodeLevel')}}",
-            data:"_token={{csrf_token()}}&selection="+mainCodeSelector.value,	
+            data:"_token={{csrf_token()}}&selection="+mainCodeSelector.value,
             async : false,
             success: function(response){
                 maxChildren=5-parseInt(response.level)
@@ -223,7 +216,7 @@ function handleAddBtn()
     btns.forEach(i=>i.hidden=true);
 
     btns[btns.length-1].hidden=false;
-    
+
     if(levels==0)
     {
         btns[btns.length-1].disabled=true;
@@ -244,14 +237,14 @@ function deleteChildCode(childID)
         {
             element.remove();
             delAfter=true;
-        } 
+        }
 
         if(delAfter)
         {
             element.remove();
         }
     });
-  
+
     updatelevels();
     handleAddBtn();
 }

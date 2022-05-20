@@ -41,7 +41,7 @@ class Codesettings extends Controller
         $code = CodeSetting::findOrFail($id);
         $code->delete();
 
-        return redirect(route('accounting.codesettings.index', $type))
+        return redirect(route('accounting::codesettings.index', $type))
         ->with('success', __('accounting.codesettings.deleteSuccess'));
     }
 
@@ -55,7 +55,7 @@ class Codesettings extends Controller
         $viewData['type']=$type;
 
 
-        return view('accounting.codesettings.create')->with('viewData', $viewData);
+        return view('accounting::codesettings.create')->with('viewData', $viewData);
     }
 
 

@@ -1,11 +1,11 @@
-@extends('layouts.dashboard')
+@extends('layouts.app')
 @section('pageTitle',$viewData['pageTitle'])
 @section('contentHeaderTitle',$viewData['contentHeaderTitle'])
-@section('pageContent')
-
+@section('content')
+@include('layouts.headers.cards') {{-- to be edited in club--}}
 @if(session()->get('success'))
 <div class="alert alert-success">
-  {{ session()->get('success') }}  
+  {{ session()->get('success') }}
 </div><br />
 @endif
 
@@ -65,7 +65,7 @@ function confirmDelete(id)
                 window.location.replace("{{route('accounting.codesettings.destroy',$viewData['type'])}}/"+id);
             }else{
                 return false;
-            } 
+            }
 })
 
 

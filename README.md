@@ -726,4 +726,25 @@ Did you mean accounting::codesettings\index?
 ```
 
 - all what we have to do is to prefiex and edit pathes from the controllers that calles views
+- sfter editing we got that error
+```shell
+ layouts.dashboard was not found.
+
+Are you sure the view exists and is a .blade.php file?
+```
+- solution was to edit pathes and that steps will be repeated for all views and paths to point to the right place
+
+<div style="background:#a11918; color:#F0F0F0">Very important in order to integrate the module into our club app we need to refer to the master layout master blade wher inour argon layouts.blade but in club app we have to get its name right </div>
+
+- do not forget to modifi module composer to have the service provider 
+```shell
+"extra": {
+        "laravel": {
+            "providers": ["Modules\\Accounting\\Providers\\AccountingServiceProvider"],
+```
+
+- dattatable wasn't able to be reloadded that was because jquery file required
+- adding the required jquery files to load in public folder and also the css required file
+- adding the links to these files in the spp layout
+
 
