@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Accounting;
-
+namespace Modules\Accounting\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Accounting\CodeSettingsView;
-use App\Models\Accounting\CodeSetting;
+use Modules\Accounting\Entities\CodeSettingsView;
+use Modules\Accounting\Entities\CodeSetting;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -24,13 +23,13 @@ class Codesettings extends Controller
             ->where('type', CodeSetting::getTypeEnum($type));
             return DataTables::of($query)->make(true);
         }
-        
-        
+
+
         $viewData=['pageTitle'=>__('accounting.codesettings').' | '.ucfirst(__('accounting.'.$type)),
         'contentHeaderTitle'=>ucfirst(__('accounting.codesettings')).' - '.ucfirst(__('accounting.'.$type))];
         $viewData['type']=$type;
 
-        
+
         return view('accounting.codesettings.index')->with('viewData', $viewData);
     }
 
@@ -50,7 +49,7 @@ class Codesettings extends Controller
     public function create($type)
     {
 
-    
+
         $viewData=['pageTitle'=>__('accounting.codesettings').' | '.__('accounting.add'),
         'contentHeaderTitle'=>ucfirst(__('accounting.codesettings')).' - '.__('accounting.add')];
         $viewData['type']=$type;
@@ -106,17 +105,17 @@ class Codesettings extends Controller
         }
 
         $maximumChilren= 5 - (int)$parentCode->level;
-        
+
         if(!is_null($request->input('childrenCodes')))
         {
             $childrenCodes=$request->input('childrenCodes');
             $maximumChilren=$maximumChilren>count($childrenCodes)?count($childrenCodes):$maximumChilren;
             $childrenCodes=array_splice($childrenCodes,0,$maximumChilren);
             $lastID=$parentCode->id;
-            
+
             DB::beginTransaction();
 
-            try 
+            try
             {
                 foreach($childrenCodes as $key=>$code)
                 {
@@ -131,13 +130,13 @@ class Codesettings extends Controller
                 }
 
                 DB::commit();
-            } 
-            catch (Exception $e) 
+            }
+            catch (Exception $e)
             {
                 DB::rollback();
                 throw $e;
             }
-        
+
 
         }
             return redirect(route('accounting.codesettings.index', $type))
@@ -151,7 +150,7 @@ class Codesettings extends Controller
             abort(404);
             die();
         }
-        
+
         if (!is_null($request->input('key')) && !empty($request->input('key'))) {
             $query['data'] = CodeSettingsView::orderby("breadcrumb", "asc")
             ->select('id', 'code', 'breadcrumb')

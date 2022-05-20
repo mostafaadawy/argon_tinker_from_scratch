@@ -700,3 +700,7 @@ class EventServiceProvider extends ServiceProvider
 - structure the entities to mimic other module structure
 - editing entities file namespace and paths
 - structure the controller to mimic other module structure
+- editing controllers file namespace and paths
+- requiiring yajara datatable `composer require yajra/laravel-datatables:^1.5`
+- requiring pdf package `composer require elibyy/tcpdf-laravel`
+- 

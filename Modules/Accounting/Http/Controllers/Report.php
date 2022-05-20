@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Accounting;
-
+namespace Modules\Accounting\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Accounting\BudgetTerm;
-use App\Models\Accounting\CodeSettingsView;
-use App\Models\Accounting\TermItem;
+use Modules\Accounting\Entities\BudgetTerm;
+use Modules\Accounting\Entities\CodeSettingsView;
+use Modules\Accounting\Entities\TermItem;
 use PDF;
-use View;
+use Illuminate\Support\Facades\View;
 
 class Report extends Controller
 {
@@ -47,17 +46,17 @@ class Report extends Controller
             ->where('is_main','0')
             ->whereNotIN('id',$exclude)
             ->get();
-            
+
             $revenMiscTerm=['name'=>__('accounting.misc'),'totalCredit'=>0,'totalDept'=>0,'total'=>0,'subCodes'=>[]];
-            
+
             foreach($revenueMisc as $code)
             {
                 $report=$code->getPeriodReport($request);
                 $revenMiscTerm['totalCredit']+=$report['report']['totalCredit'];
                 $revenMiscTerm['totalDept']+=$report['report']['totalDept'];
-                array_push($revenMiscTerm['subCodes'],$report);    
+                array_push($revenMiscTerm['subCodes'],$report);
             }
-            
+
             $revenMiscTerm['total']=$revenMiscTerm['totalCredit']-$revenMiscTerm['totalDept'];
 
         }
@@ -70,17 +69,17 @@ class Report extends Controller
             ->get();
 
             $expenMiscTerm=['name'=>__('accounting.misc'),'totalCredit'=>0,'totalDept'=>0,'total'=>0,'subCodes'=>[]];
-            
+
             foreach($expensesMisc as $code)
             {
                 $report=$code->getPeriodReport($request);
                 $expenMiscTerm['totalCredit']+=$report['report']['totalCredit'];
                 $expenMiscTerm['totalDept']+=$report['report']['totalDept'];
-                array_push($expenMiscTerm['subCodes'],$report);    
+                array_push($expenMiscTerm['subCodes'],$report);
             }
-            
+
             $expenMiscTerm['total']=$expenMiscTerm['totalCredit']-$expenMiscTerm['totalDept'];
-    
+
         }
 
 
@@ -93,7 +92,7 @@ class Report extends Controller
             array_push($revenTerms,$term->getPeriodReport($request));
         }
 
-        
+
         foreach($expensesTerms as $term)
         {
             array_push($expenTerms,$term->getPeriodReport($request));
@@ -123,7 +122,7 @@ class Report extends Controller
         PDF::AddPage();
         PDF::writeHTML($html_content, true, false, true, false, '');
         PDF::Output($documentFileName);
-        
+
     }
 
 

@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Accounting;
-
+namespace Modules\Accounting\Http\Controllers;
 use App\Http\Controllers\Controller;
-use App\Models\Accounting\CodeSetting;
+use Modules\Accounting\Entities\CodeSetting;
 use Illuminate\Http\Request;
-use App\Models\Accounting\DailyRecordsView;
-use App\Models\Accounting\DailyRecords;
-use App\Models\Accounting\CodeSettingsView;
-use App\Models\Accounting\DailyRecordsEntrie;
+use Modules\Accounting\Entities\DailyRecordsView;
+use Modules\Accounting\Entities\DailyRecords;
+use Modules\Accounting\Entities\CodeSettingsView;
+use Modules\Accounting\Entities\DailyRecordsEntrie;
 use Exception;
 use Illuminate\Support\Facades\View;
 use Illuminate\Validation\ValidationException;
@@ -140,7 +139,7 @@ class Dailyrecord extends Controller
 
         $viewData=['pageTitle'=>__('accounting.dailyrecords').' | '.__('accounting.preview'),
         'contentHeaderTitle'=>ucfirst(__('accounting.dailyrecords')).' - '.__('accounting.preview')];
-       
+
 
         return View('accounting.dailyrecords.preview',['viewData'=>$viewData,'record'=>$record]);
     }
@@ -179,9 +178,9 @@ class Dailyrecord extends Controller
             try
 
             {
-                
+
                 $oRecordsInput=is_null($request->input('oldEntries'))||empty($request->input('oldEntries'))?[]:$request->input('oldEntries');
-              
+
                 //deleting non-existing records
                 DailyRecordsEntrie::whereNotIn('id',$oRecordsInput)->where('daily_records_id','=',$record->id)->delete();
 
@@ -214,9 +213,9 @@ class Dailyrecord extends Controller
             if(!is_null($request->input('codes')) && !empty($request->input('codes')))
             {
 
-                try 
+                try
                 {
-    
+
                     for ($i=0;$i<count($request->input('codes'));$i++)
                     {
                         DailyRecordsEntrie::create(
@@ -233,7 +232,7 @@ class Dailyrecord extends Controller
                 {
                     throw ValidationException::withMessages([__('accounting.codesettingsUnexcepectedError')]);
                 }
-        
+
             }
 
             return redirect(route('accounting.dailyrecords.edit', [$type,$id]))

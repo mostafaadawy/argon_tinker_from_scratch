@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Accounting;
-
+namespace Modules\Accounting\Http\Controllers;
 use App\Http\Controllers\Controller;
-use App\Models\Accounting\BudgetTerm;
-use App\Models\Accounting\CodeSettingsView;
-use App\Models\Accounting\TermItem;
+use Modules\Accounting\Entities\BudgetTerm;
+use Modules\Accounting\Entities\CodeSettingsView;
+use Modules\Accounting\Entities\TermItem;
 use Exception;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -21,17 +20,17 @@ class BudgetTerms extends Controller
             $query = BudgetTerm::select('id', 'name')
             ->withCount('items')
             ->where('type', ($type=='revenue')?'REVEN':'EXPEN');
-            
+
             return DataTables::of($query)
             ->make(true);
         }
-        
-        
+
+
         $viewData=['pageTitle'=>__('accounting.budgetTerms').' | '.ucfirst(__('accounting.'.$type)),
         'contentHeaderTitle'=>ucfirst(__('accounting.budgetTerms')).' - '.ucfirst(__('accounting.'.$type))];
         $viewData['type']=$type;
 
-        
+
         return view('accounting.budgetterms.index')->with('viewData', $viewData);
     }
 
@@ -60,7 +59,7 @@ class BudgetTerms extends Controller
 
         $term=new BudgetTerm();
         $term->validate($request,$type);
-        
+
         try
         {
             $term=BudgetTerm::create(
@@ -69,8 +68,8 @@ class BudgetTerms extends Controller
                     'type'=> ($type=='revenue')?'REVEN':'EXPEN'
                 ]
                 );
-    
-            
+
+
             foreach($request->input('codes') as $code)
             {
                 TermItem::create(
@@ -80,13 +79,13 @@ class BudgetTerms extends Controller
                     ]
                     );
             }
-    
+
         }
         catch(Exception $e)
         {
 
             throw ValidationException::withMessages([__('accounting.budgetTermUnexcepectedError')]);
-            
+
         }
 
         return redirect(route('accounting.budgetterms.index', $type))
@@ -129,15 +128,15 @@ class BudgetTerms extends Controller
                             'budget_term_id'=> $term['id']
                         ]
                         );
-    
+
                 }
                 catch(Exception $e)
                 {
-        
+
                     throw ValidationException::withMessages([__('accounting.budgetTermUnexcepectedError')]);
-                    
+
                 }
-            }    
+            }
         }
 
 
@@ -174,18 +173,18 @@ class BudgetTerms extends Controller
 
             return DataTables::of($query)->make(true);
         }
-        
-        
+
+
         $viewData=['pageTitle'=>__('accounting.budgetTerms').' | '.ucfirst(__('accounting.misc')),
         'contentHeaderTitle'=>ucfirst(__('accounting.budgetTerms')).' - '.ucfirst(__('accounting.misc').' - '.ucfirst(__('accounting.'.$type)))];
         $viewData['type']=$type;
-        
+
         return view('accounting.budgetterms.misc')->with('viewData', $viewData);
     }
 
     public function miscStore($type, Request $request)
     {
-        
+
         $request->validate(
                [
                 'add_to_existing' => 'required|boolean',
@@ -196,7 +195,7 @@ class BudgetTerms extends Controller
 
              );
 
-        
+
         if($request->input('add_to_existing'))
         {
             $request->validate(
@@ -208,13 +207,13 @@ class BudgetTerms extends Controller
 
             return $this->update($type,$request->input('term'),$request);
 
-        }   
+        }
         else
         {
 
             return $this->store($request,$type);
 
-        } 
+        }
     }
 
 
@@ -244,9 +243,9 @@ class BudgetTerms extends Controller
                 ->get();
 
                 return response()->json($query);
-        
+
             break;
-            
+
             case 'searchTerm':
 
                 $request->validate([
